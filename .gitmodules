@@ -1,0 +1,3 @@
+[submodule "keepreading/third_party/river"]
+	path = keepreading/third_party/river
+	url = git@git.mail.netease.com:client/river.git
