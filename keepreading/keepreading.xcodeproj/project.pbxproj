@@ -15,6 +15,11 @@
 		0B53AF1D1C2E5FB7009DF1C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B53AF1B1C2E5FB7009DF1C3 /* LaunchScreen.storyboard */; };
 		0B53AF281C2E5FB7009DF1C3 /* keepreadingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B53AF271C2E5FB7009DF1C3 /* keepreadingTests.m */; };
 		0B53AF331C2E5FB7009DF1C3 /* keepreadingUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B53AF321C2E5FB7009DF1C3 /* keepreadingUITests.m */; };
+		0B53AF431C2E7FDE009DF1C3 /* BookCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B53AF421C2E7FDE009DF1C3 /* BookCore.m */; };
+		0B733B141C2E92A80024DB8F /* DataParseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B733B131C2E92A80024DB8F /* DataParseHelper.m */; };
+		0B733B171C2E92D80024DB8F /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B733B161C2E92D80024DB8F /* Book.m */; };
+		0B733B1A1C2EA4120024DB8F /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B733B191C2EA4120024DB8F /* BaseModel.m */; };
+		0B733B301C2EF2550024DB8F /* libRiver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B733B2B1C2EF23D0024DB8F /* libRiver.a */; };
 		C5A7512DADB0892256BBE509 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 372477C91097149E9E7D2E5C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +37,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0B53AF091C2E5FB7009DF1C3;
 			remoteInfo = keepreading;
+		};
+		0B733B2A1C2EF23D0024DB8F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B733B251C2EF23D0024DB8F /* River.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0B6949AE1BCB49710004A57B;
+			remoteInfo = River;
+		};
+		0B733B2C1C2EF23D0024DB8F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B733B251C2EF23D0024DB8F /* River.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0B6949D21BCB4F3D0004A57B;
+			remoteInfo = RiverTests;
+		};
+		0B733B2E1C2EF24A0024DB8F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B733B251C2EF23D0024DB8F /* River.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0B6949AD1BCB49710004A57B;
+			remoteInfo = River;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -52,6 +78,15 @@
 		0B53AF2E1C2E5FB7009DF1C3 /* keepreadingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = keepreadingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B53AF321C2E5FB7009DF1C3 /* keepreadingUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = keepreadingUITests.m; sourceTree = "<group>"; };
 		0B53AF341C2E5FB7009DF1C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0B53AF411C2E7FDE009DF1C3 /* BookCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookCore.h; path = net/BookCore.h; sourceTree = "<group>"; };
+		0B53AF421C2E7FDE009DF1C3 /* BookCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookCore.m; path = net/BookCore.m; sourceTree = "<group>"; };
+		0B733B121C2E92A80024DB8F /* DataParseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataParseHelper.h; path = net/Model/DataParseHelper.h; sourceTree = "<group>"; };
+		0B733B131C2E92A80024DB8F /* DataParseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataParseHelper.m; path = net/Model/DataParseHelper.m; sourceTree = "<group>"; };
+		0B733B151C2E92D80024DB8F /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Book.h; path = net/Model/Book.h; sourceTree = "<group>"; };
+		0B733B161C2E92D80024DB8F /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Book.m; path = net/Model/Book.m; sourceTree = "<group>"; };
+		0B733B181C2EA4120024DB8F /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseModel.h; path = net/Model/BaseModel.h; sourceTree = "<group>"; };
+		0B733B191C2EA4120024DB8F /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseModel.m; path = net/Model/BaseModel.m; sourceTree = "<group>"; };
+		0B733B251C2EF23D0024DB8F /* River.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = River.xcodeproj; path = third_party/river/River.xcodeproj; sourceTree = "<group>"; };
 		372477C91097149E9E7D2E5C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE1539197C2D6D2AA15644E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A7595A16357207B2EA193279 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -62,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B733B301C2EF2550024DB8F /* libRiver.a in Frameworks */,
 				C5A7512DADB0892256BBE509 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,6 +122,7 @@
 		0B53AF011C2E5FB7009DF1C3 = {
 			isa = PBXGroup;
 			children = (
+				0B733B1B1C2EF2230024DB8F /* third_party */,
 				0B53AF0C1C2E5FB7009DF1C3 /* keepreading */,
 				0B53AF261C2E5FB7009DF1C3 /* keepreadingTests */,
 				0B53AF311C2E5FB7009DF1C3 /* keepreadingUITests */,
@@ -108,6 +145,7 @@
 		0B53AF0C1C2E5FB7009DF1C3 /* keepreading */ = {
 			isa = PBXGroup;
 			children = (
+				0B53AF401C2E7FA3009DF1C3 /* business */,
 				0B53AF101C2E5FB7009DF1C3 /* AppDelegate.h */,
 				0B53AF111C2E5FB7009DF1C3 /* AppDelegate.m */,
 				0B53AF131C2E5FB7009DF1C3 /* ViewController.h */,
@@ -147,6 +185,46 @@
 			path = keepreadingUITests;
 			sourceTree = "<group>";
 		};
+		0B53AF401C2E7FA3009DF1C3 /* business */ = {
+			isa = PBXGroup;
+			children = (
+				0B53AF441C2E8612009DF1C3 /* model */,
+				0B53AF411C2E7FDE009DF1C3 /* BookCore.h */,
+				0B53AF421C2E7FDE009DF1C3 /* BookCore.m */,
+			);
+			name = business;
+			sourceTree = "<group>";
+		};
+		0B53AF441C2E8612009DF1C3 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				0B733B151C2E92D80024DB8F /* Book.h */,
+				0B733B161C2E92D80024DB8F /* Book.m */,
+				0B733B121C2E92A80024DB8F /* DataParseHelper.h */,
+				0B733B131C2E92A80024DB8F /* DataParseHelper.m */,
+				0B733B181C2EA4120024DB8F /* BaseModel.h */,
+				0B733B191C2EA4120024DB8F /* BaseModel.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		0B733B1B1C2EF2230024DB8F /* third_party */ = {
+			isa = PBXGroup;
+			children = (
+				0B733B251C2EF23D0024DB8F /* River.xcodeproj */,
+			);
+			name = third_party;
+			sourceTree = "<group>";
+		};
+		0B733B261C2EF23D0024DB8F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0B733B2B1C2EF23D0024DB8F /* libRiver.a */,
+				0B733B2D1C2EF23D0024DB8F /* RiverTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		0D6D8FEA4BF2BC5EB9B533FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +259,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0B733B2F1C2EF24A0024DB8F /* PBXTargetDependency */,
 			);
 			name = keepreading;
 			productName = keepreading;
@@ -256,6 +335,12 @@
 			mainGroup = 0B53AF011C2E5FB7009DF1C3;
 			productRefGroup = 0B53AF0B1C2E5FB7009DF1C3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 0B733B261C2EF23D0024DB8F /* Products */;
+					ProjectRef = 0B733B251C2EF23D0024DB8F /* River.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				0B53AF091C2E5FB7009DF1C3 /* keepreading */,
@@ -264,6 +349,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		0B733B2B1C2EF23D0024DB8F /* libRiver.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRiver.a;
+			remoteRef = 0B733B2A1C2EF23D0024DB8F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0B733B2D1C2EF23D0024DB8F /* RiverTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RiverTests.xctest;
+			remoteRef = 0B733B2C1C2EF23D0024DB8F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0B53AF081C2E5FB7009DF1C3 /* Resources */ = {
@@ -345,8 +447,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B733B141C2E92A80024DB8F /* DataParseHelper.m in Sources */,
+				0B53AF431C2E7FDE009DF1C3 /* BookCore.m in Sources */,
 				0B53AF151C2E5FB7009DF1C3 /* ViewController.m in Sources */,
+				0B733B1A1C2EA4120024DB8F /* BaseModel.m in Sources */,
 				0B53AF121C2E5FB7009DF1C3 /* AppDelegate.m in Sources */,
+				0B733B171C2E92D80024DB8F /* Book.m in Sources */,
 				0B53AF0F1C2E5FB7009DF1C3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,6 +485,11 @@
 			isa = PBXTargetDependency;
 			target = 0B53AF091C2E5FB7009DF1C3 /* keepreading */;
 			targetProxy = 0B53AF2F1C2E5FB7009DF1C3 /* PBXContainerItemProxy */;
+		};
+		0B733B2F1C2EF24A0024DB8F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = River;
+			targetProxy = 0B733B2E1C2EF24A0024DB8F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -489,6 +600,14 @@
 			baseConfigurationReference = A7595A16357207B2EA193279 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/CocoaLumberjack\"",
+					"\"${PODS_ROOT}/Headers/Public/YapDatabase\"",
+					third_party/river/River,
+				);
 				INFOPLIST_FILE = keepreading/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -502,6 +621,14 @@
 			baseConfigurationReference = 3AE1539197C2D6D2AA15644E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/CocoaLumberjack\"",
+					"\"${PODS_ROOT}/Headers/Public/YapDatabase\"",
+					third_party/river/River,
+				);
 				INFOPLIST_FILE = keepreading/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

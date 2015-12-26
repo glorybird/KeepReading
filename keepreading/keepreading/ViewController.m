@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "BookCore.h"
+#import "RVTask.h"
 
 @interface ViewController ()
 
@@ -16,7 +18,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    [RVTask mountaintop].thenFinishSetYourself(^(RVTask *preTask, void (^finishBlock)(id result)) {
+        [[BookCore sharedInstance] searchBooksWithName:@"面包会有的" completeHandler:^(NSArray *books, NSError *error) {
+            finishBlock(books.firstObject);
+        }];
+    }).then(^id(RVTask *preTask) {
+        Book* book = (Book *)preTask.result;
+        [[BookCore sharedInstance] saveBook:book];
+        return book.uid;
+    }).then(^id(RVTask *preTask) {
+        NSLog(@"%@", [[BookCore sharedInstance] listBooks]);
+        return nil;
+    });
 }
 
 - (void)didReceiveMemoryWarning {

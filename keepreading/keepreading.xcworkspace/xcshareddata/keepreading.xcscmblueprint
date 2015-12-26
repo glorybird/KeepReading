@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "9F3F7A4F873F420EC89F2CE669290EBCA2D88839",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "9F3F7A4F873F420EC89F2CE669290EBCA2D88839" : 0,
+    "3E453586375E3F31F3ECE1C374B23EB94384EA94" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "A46E795D-8C70-4592-A4C5-59331CA9DA92",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "9F3F7A4F873F420EC89F2CE669290EBCA2D88839" : "keepreading\/",
+    "3E453586375E3F31F3ECE1C374B23EB94384EA94" : "keepreading\/keepreading\/third_party\/river\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "keepreading",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "keepreading\/keepreading.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git.mail.netease.com:client\/river.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3E453586375E3F31F3ECE1C374B23EB94384EA94"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:glorybird\/keepreading.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9F3F7A4F873F420EC89F2CE669290EBCA2D88839"
+    }
+  ]
+}
