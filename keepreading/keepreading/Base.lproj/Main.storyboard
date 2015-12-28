@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,9 +17,91 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="240" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mbC-ZA-dAn" customClass="BookTableView">
+                                <rect key="frame" x="0.0" y="4" width="600" height="596"/>
+                                <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BookTableViewCellIdentifier" id="517-sj-LlP" customClass="BookTableViewCell">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="240"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="517-sj-LlP" id="niv-aJ-nBE">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gGo-kR-lDg">
+                                                    <rect key="frame" x="8" y="0.0" width="179" height="232"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="179" id="tFV-HX-TVV"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="图书标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7u-G0-RUQ">
+                                                    <rect key="frame" x="200" y="0.0" width="392" height="46"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="46" id="eFA-iX-Pqw"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="图书简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DqS-d9-2wz">
+                                                    <rect key="frame" x="200" y="54" width="392" height="137"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作者" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0z-0f-GZ5">
+                                                    <rect key="frame" x="195" y="211" width="195" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="195" id="Jeb-Ou-Udi"/>
+                                                        <constraint firstAttribute="height" constant="21" id="ac3-X4-B5h"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="w0z-0f-GZ5" firstAttribute="bottom" secondItem="niv-aJ-nBE" secondAttribute="bottomMargin" id="3Rj-c0-DAx"/>
+                                                <constraint firstItem="J7u-G0-RUQ" firstAttribute="top" secondItem="gGo-kR-lDg" secondAttribute="top" id="5VG-ca-5q3"/>
+                                                <constraint firstItem="J7u-G0-RUQ" firstAttribute="leading" secondItem="gGo-kR-lDg" secondAttribute="trailing" constant="13" id="8b8-kk-zJY"/>
+                                                <constraint firstItem="gGo-kR-lDg" firstAttribute="top" secondItem="niv-aJ-nBE" secondAttribute="top" id="8r3-Q7-px1"/>
+                                                <constraint firstItem="DqS-d9-2wz" firstAttribute="leading" secondItem="J7u-G0-RUQ" secondAttribute="leading" id="H1W-Fy-6Z5"/>
+                                                <constraint firstItem="gGo-kR-lDg" firstAttribute="bottom" secondItem="w0z-0f-GZ5" secondAttribute="bottom" id="NGe-eZ-Oyj"/>
+                                                <constraint firstItem="J7u-G0-RUQ" firstAttribute="trailing" secondItem="niv-aJ-nBE" secondAttribute="trailingMargin" id="OzU-Qx-yKP"/>
+                                                <constraint firstItem="w0z-0f-GZ5" firstAttribute="leading" secondItem="gGo-kR-lDg" secondAttribute="trailing" constant="8" symbolic="YES" id="Rbg-cb-N6A"/>
+                                                <constraint firstItem="gGo-kR-lDg" firstAttribute="leading" secondItem="niv-aJ-nBE" secondAttribute="leadingMargin" id="kvq-gA-7y7"/>
+                                                <constraint firstItem="J7u-G0-RUQ" firstAttribute="trailing" secondItem="DqS-d9-2wz" secondAttribute="trailing" id="sjw-cb-wwD"/>
+                                                <constraint firstItem="w0z-0f-GZ5" firstAttribute="top" secondItem="DqS-d9-2wz" secondAttribute="bottom" constant="20" id="tN8-j9-vuj"/>
+                                                <constraint firstItem="DqS-d9-2wz" firstAttribute="top" secondItem="J7u-G0-RUQ" secondAttribute="bottom" constant="8" symbolic="YES" id="ytA-yH-CkA"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="author" destination="w0z-0f-GZ5" id="oid-Zn-hcQ"/>
+                                            <outlet property="summary" destination="DqS-d9-2wz" id="Dvs-Bs-zIi"/>
+                                            <outlet property="surface" destination="gGo-kR-lDg" id="ieK-4C-QLf"/>
+                                            <outlet property="title" destination="J7u-G0-RUQ" id="xBH-IB-pkk"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Fbc-mC-MS1"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="jgc-QF-qkI"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mbC-ZA-dAn" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="XYC-o3-0R7"/>
+                            <constraint firstItem="mbC-ZA-dAn" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-60" id="hAF-bO-Rak"/>
+                            <constraint firstItem="mbC-ZA-dAn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hGf-4r-KT4"/>
+                            <constraint firstAttribute="trailing" secondItem="mbC-ZA-dAn" secondAttribute="trailing" id="tSC-Ol-0cf"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9pK-UY-qZp"/>
+                    <connections>
+                        <outlet property="tableView" destination="mbC-ZA-dAn" id="0ly-ii-vIa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

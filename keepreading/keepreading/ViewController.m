@@ -9,12 +9,17 @@
 #import "ViewController.h"
 #import "BookCore.h"
 #import "RVTask.h"
+#import "BookTableViewCell.h"
+#import "BookTableView.h"
+#import "UIImageView+WebCache.h"
+
+static NSString *cellIdentifier = @"BookTableViewCellIdentifier";
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate, UIDynamicAnimatorDelegate, UICollisionBehaviorDelegate>
 
 @property (nonatomic) UIView* menuView;
 @property (nonatomic) UIButton* menuButton;
-@property (nonatomic) UITableView* tableView;
+@property (nonatomic, weak) IBOutlet BookTableView* tableView;
 @property (nonatomic) UIDynamicAnimator* animator;
 @property (nonatomic) UIGravityBehavior* gravityBehaior;
 @property (nonatomic) UICollisionBehavior *collision;
@@ -23,6 +28,7 @@
 @property (nonatomic) UIPushBehavior *pushDownBehavior;
 @property (nonatomic) UIDynamicItemBehavior *itemBehaviour;
 @property (nonatomic, assign) BOOL atTop;
+@property (nonatomic) NSArray* books;
 
 @end
 
@@ -47,12 +53,21 @@
     [super viewDidLoad];
     
     [self navigationBarSetup];
-    
     [self menuViewSetup];
-    
     [self tableViewSetup];
-    
     [self animationBehaiorSetup];
+    
+    [RVTask mountaintop].thenFinishSetYourself(^(RVTask *preTask, void (^finishBlock)(id result)) {
+        [[BookCore sharedInstance] searchBooksWithName:@"面包" completeHandler:^(NSArray *books, NSError *error) {
+            finishBlock(books);
+        }];
+    }).then(^id(RVTask *preTask) {
+        self.books = preTask.result;
+        return nil;
+    }).then(^id(RVTask *preTask) {
+        [self.tableView reloadData];
+        return nil;
+    });
 }
 
 - (void)navigationBarSetup
@@ -80,11 +95,8 @@
 
 - (void)tableViewSetup
 {
-    self.tableView = [[UITableView alloc ] initWithFrame:CGRectMake(0, [self navigationBarHeight], [self screenWith], [self screenHeight] - [self navigationBarHeight])];
     self.tableView.backgroundColor = [UIColor clearColor];
-//    self.tableView.delegate = self;
-//    self.tableView.dataSource = self;
-    [self.view insertSubview:self.tableView atIndex:0];
+    [self.view sendSubviewToBack:self.tableView];
 }
 
 - (void)animationBehaiorSetup
@@ -163,8 +175,6 @@
     if([identifierString isEqualToString:@"Collide top"]){
         self.menuView.alpha = 1.0;
         self.menuButton.enabled = YES;
-    } else if ([identifierString isEqualToString:@"Collide left"]) {
-        
     }
 }
 
@@ -172,6 +182,28 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.books.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Book* book = [self.books objectAtIndex:indexPath.row];
+    BookTableViewCell* cell = (BookTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    [cell.surface sd_setImageWithURL:[NSURL URLWithString:book.imageUrl]];;
+    cell.title.text = book.title;
+    cell.summary.text = book.summary;
+    cell.author.text = book.authors.firstObject;
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 200;
 }
 
 @end

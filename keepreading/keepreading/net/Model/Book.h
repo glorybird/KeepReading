@@ -15,8 +15,9 @@
 
 @property (nonatomic, copy) NSString* uid;
 @property (nonatomic, copy) NSString* title;
+@property (nonatomic, copy) NSString* imageUrl;
 @property (nonatomic, copy) NSNumber* pages;
-@property (nonatomic, copy) NSString* author;
+@property (nonatomic, copy) NSArray* authors;
 @property (nonatomic, copy) NSString* pubdate;
 @property (nonatomic, copy) NSString* publisher;
 @property (nonatomic, copy) NSString* summary;
