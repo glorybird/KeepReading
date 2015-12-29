@@ -18,7 +18,10 @@
             _uid = [dict objectForKey:@"id"];
             _title = [dict objectForKey:@"title"];
             _imageUrl = [[dict objectForKey:@"images"] objectForKey:@"medium"];
+            _imageUrlLarge = [[dict objectForKey:@"images"] objectForKey:@"large"];
             _pages = @([[dict objectForKey:@"pages"] integerValue]);
+            _average = [[dict objectForKey:@"rating"] objectForKey:@"average"];
+            _numRaters = [[dict objectForKey:@"rating"] objectForKey:@"numRaters"];
             _authors = [dict objectForKey:@"author"];
             _pubdate = [dict objectForKey:@"pubdate"];
             _publisher = [dict objectForKey:@"publisher"];
@@ -34,7 +37,10 @@
     [aCoder encodeObject:_uid forKey:@"_uid"];
     [aCoder encodeObject:_title forKey:@"_title"];
     [aCoder encodeObject:_imageUrl forKey:@"_imageUrl"];
+    [aCoder encodeObject:_imageUrlLarge forKey:@"_imageUrlLarge"];
     [aCoder encodeObject:_pages forKey:@"_pages"];
+    [aCoder encodeObject:_average forKey:@"_average"];
+    [aCoder encodeObject:_numRaters forKey:@"_numRaters"];
     [aCoder encodeObject:_authors forKey:@"_authors"];
     [aCoder encodeObject:_pubdate forKey:@"_pubdate"];
     [aCoder encodeObject:_publisher forKey:@"_publisher"];
@@ -50,7 +56,10 @@
         _uid =  [aDecoder decodeObjectForKey:@"_uid"];
         _title = [aDecoder decodeObjectForKey:@"_title"];
         _imageUrl = [aDecoder decodeObjectForKey:@"_imageUrl"];
+        _imageUrlLarge = [aDecoder decodeObjectForKey:@"_imageUrlLarge"];
         _pages = [aDecoder decodeObjectForKey:@"_pages"];
+        _average = [aDecoder decodeObjectForKey:@"_average"];
+        _numRaters = [aDecoder decodeObjectForKey:@"_numRaters"];
         _authors = [aDecoder decodeObjectForKey:@"_authors"];
         _pubdate = [aDecoder decodeObjectForKey:@"_pubdate"];
         _publisher = [aDecoder decodeObjectForKey:@"_publisher"];

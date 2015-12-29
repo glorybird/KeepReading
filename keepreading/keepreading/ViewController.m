@@ -194,16 +194,19 @@ static NSString *cellIdentifier = @"BookTableViewCellIdentifier";
 {
     Book* book = [self.books objectAtIndex:indexPath.row];
     BookTableViewCell* cell = (BookTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    cell.book = book;
+    cell.presentVC = self;
     [cell.surface sd_setImageWithURL:[NSURL URLWithString:book.imageUrl]];;
     cell.title.text = book.title;
-    cell.summary.text = book.summary;
-    cell.author.text = book.authors.firstObject;
+    cell.average.text = [NSString stringWithFormat:@"评分:%@", book.average];
+    cell.author.text = [NSString stringWithFormat:@"作者:%@", book.authors.firstObject];
+    cell.pages.text = [NSString stringWithFormat:@"页数:%@", book.pages];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 200;
+    return 170;
 }
 
 @end
