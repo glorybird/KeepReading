@@ -14,6 +14,7 @@
 #import "UIImageView+WebCache.h"
 #import <Masonry.h>
 #import "BooksSearchTableViewController.h"
+#import "BookDetailViewController.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate, UIDynamicAnimatorDelegate, UICollisionBehaviorDelegate>
 
@@ -262,6 +263,13 @@
             }];
         }
         [self pushUpMenu];
+    } else if (tableView == self.localBooksTableView) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        BookDetailViewController* controller = (BookDetailViewController *)
+        [storyboard instantiateViewControllerWithIdentifier:@"BookDetailViewController"];
+        Book* book = [self.books objectAtIndex:indexPath.row];
+        controller.book = book;
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 

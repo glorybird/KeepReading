@@ -24,6 +24,7 @@
 		E31915171C368062005C6F72 /* BooksSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E31915161C368062005C6F72 /* BooksSearchTableViewController.m */; };
 		E36BCDF21C318A140057EC7F /* BookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E36BCDF11C318A140057EC7F /* BookTableViewCell.m */; };
 		E36BCDFE1C31949A0057EC7F /* BookTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E36BCDFD1C31949A0057EC7F /* BookTableView.m */; };
+		E37DEACC1C36A8010006DFD5 /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37DEACB1C36A8010006DFD5 /* BookDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,8 @@
 		E36BCDF11C318A140057EC7F /* BookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookTableViewCell.m; sourceTree = "<group>"; };
 		E36BCDFC1C31949A0057EC7F /* BookTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookTableView.h; sourceTree = "<group>"; };
 		E36BCDFD1C31949A0057EC7F /* BookTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookTableView.m; sourceTree = "<group>"; };
+		E37DEACA1C36A8010006DFD5 /* BookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailViewController.h; sourceTree = "<group>"; };
+		E37DEACB1C36A8010006DFD5 /* BookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +168,8 @@
 				E36BCDFD1C31949A0057EC7F /* BookTableView.m */,
 				E31915151C368062005C6F72 /* BooksSearchTableViewController.h */,
 				E31915161C368062005C6F72 /* BooksSearchTableViewController.m */,
+				E37DEACA1C36A8010006DFD5 /* BookDetailViewController.h */,
+				E37DEACB1C36A8010006DFD5 /* BookDetailViewController.m */,
 				0B53AF161C2E5FB7009DF1C3 /* Main.storyboard */,
 				0B53AF191C2E5FB7009DF1C3 /* Assets.xcassets */,
 				0B53AF1B1C2E5FB7009DF1C3 /* LaunchScreen.storyboard */,
@@ -462,6 +467,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E37DEACC1C36A8010006DFD5 /* BookDetailViewController.m in Sources */,
 				E31915171C368062005C6F72 /* BooksSearchTableViewController.m in Sources */,
 				0B733B141C2E92A80024DB8F /* DataParseHelper.m in Sources */,
 				0B53AF431C2E7FDE009DF1C3 /* BookCore.m in Sources */,

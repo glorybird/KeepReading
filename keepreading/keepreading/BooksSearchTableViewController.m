@@ -11,6 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "RVTask.h"
 #import "BookCore.h"
+#import "BookDetailViewController.h"
 
 @interface BooksSearchTableViewController () <UISearchBarDelegate>
 
@@ -74,6 +75,16 @@
     cell.author.text = [NSString stringWithFormat:@"作者:%@", book.authors.firstObject];
     cell.pages.text = [NSString stringWithFormat:@"页数:%@", book.pages];
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    BookDetailViewController* controller = (BookDetailViewController *)
+    [storyboard instantiateViewControllerWithIdentifier:@"BookDetailViewController"];
+    Book* book = [self.books objectAtIndex:indexPath.row];
+    controller.book = book;
+    [self.presentVC.navigationController pushViewController:controller animated:YES];
 }
 
 @end
