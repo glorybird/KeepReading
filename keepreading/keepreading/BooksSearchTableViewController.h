@@ -10,5 +10,5 @@
 
 @interface BooksSearchTableViewController : UITableViewController
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
+@property (nonatomic, weak) UIViewController* presentVC;
 @end

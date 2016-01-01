@@ -249,8 +249,10 @@
         NSString* menuTitle = [self.menuTitles objectAtIndex:indexPath.row];
         if ([menuTitle isEqualToString:@"搜索"]) {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            self.currentShowViewController = (BooksSearchTableViewController *)
+            BooksSearchTableViewController* controller = (BooksSearchTableViewController *)
             [storyboard instantiateViewControllerWithIdentifier:@"BooksSearchTableViewController"];
+            [controller setPresentVC:self];
+            self.currentShowViewController = controller;
             [self.view insertSubview:self.currentShowViewController.view belowSubview:self.menuView];
             [self.currentShowViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.view.mas_top).with.offset([self navigationBarHeight]); //with is an optional semantic filler

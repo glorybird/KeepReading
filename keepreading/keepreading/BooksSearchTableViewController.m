@@ -67,7 +67,7 @@
     Book* book = [self.books objectAtIndex:indexPath.row];
     BookTableViewCell* cell = (BookTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     cell.book = book;
-    cell.presentVC = self;
+    cell.presentVC = self.presentVC;
     [cell.surface sd_setImageWithURL:[NSURL URLWithString:book.imageUrl]];;
     cell.title.text = book.title;
     cell.average.text = [NSString stringWithFormat:@"评分:%@", book.average];
