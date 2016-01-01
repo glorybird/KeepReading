@@ -34,6 +34,12 @@
 - (void)deleteBookWithId:(NSString *)bookId;
 
 /*!
+ *  @brief 获取图书
+ *
+ */
+- (Book *)bookWithId:(NSString *)bookId;
+
+/*!
  *  @brief 本地图书列表
  */
 - (NSArray *)listBooks;

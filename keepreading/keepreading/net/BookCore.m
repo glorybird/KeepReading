@@ -68,6 +68,15 @@
     }];
 }
 
+- (Book *)bookWithId:(NSString *)bookId
+{
+    __block Book* book = nil;
+    [[self.database newConnection] readWithBlock:^(YapDatabaseReadTransaction * _Nonnull transaction) {
+        book = [transaction objectForKey:bookId inCollection:@"books"];
+    }];
+    return book;
+}
+
 - (NSArray *)listBooks
 {
     NSMutableArray* books = [NSMutableArray array];

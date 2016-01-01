@@ -82,6 +82,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     BookDetailViewController* controller = (BookDetailViewController *)
     [storyboard instantiateViewControllerWithIdentifier:@"BookDetailViewController"];
+    controller.isComeFromSearchList = YES;
     Book* book = [self.books objectAtIndex:indexPath.row];
     controller.book = book;
     [self.presentVC.navigationController pushViewController:controller animated:YES];

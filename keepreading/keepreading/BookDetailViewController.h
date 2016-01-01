@@ -22,4 +22,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *summaryTextView;
 @property (weak, nonatomic) IBOutlet UIButton *addLocalReadListButton;
 
+@property (nonatomic, assign) BOOL isComeFromSearchList;
+
 @end

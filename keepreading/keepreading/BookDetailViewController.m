@@ -26,7 +26,22 @@
     self.pages.text = [NSString stringWithFormat:@"页数:%@", self.book.pages];
     [self.summaryTextView setText:self.book.summary];
     [self.summaryTextView setTextColor:[UIColor whiteColor]];
-    self.addLocalReadListButton.hidden = NO;
+    if (self.isComeFromSearchList) {
+        self.addLocalReadListButton.hidden = NO;
+        if ([[BookCore sharedInstance] bookWithId:self.book.uid]) {
+            [self.addLocalReadListButton setTitle:@"已加入阅读列表" forState:UIControlStateNormal];
+            self.addLocalReadListButton.enabled = NO;
+        }
+    } else {
+        UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteBook:)];
+        self.navigationItem.rightBarButtonItem = deleteButton;
+    }
+}
+
+- (void)deleteBook:(id)sender
+{
+    [[BookCore sharedInstance] deleteBookWithId:self.book.uid];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewDidLayoutSubviews
@@ -34,6 +49,11 @@
     [super viewDidLayoutSubviews];
     CGSize newSize = [self.summaryTextView sizeThatFits:CGSizeMake([UIScreen mainScreen].bounds.size.width, MAXFLOAT)];
     [self.summaryTextView setFrame:CGRectMake(0, self.briefView.frame.size.height, newSize.width, newSize.height)];
+    __block NSInteger height = 0;
+    [self.scrollview.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        height += obj.frame.size.height;
+    }];
+    self.scrollview.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, height);
     [self.view setNeedsLayout];
 }
 
@@ -45,6 +65,7 @@
 - (IBAction)addToLocalReadList:(id)sender {
     [[BookCore sharedInstance] saveBook:self.book];
     [self.addLocalReadListButton setTitle:@"已加入阅读列表" forState:UIControlStateNormal];
+    self.addLocalReadListButton.enabled = NO;
 }
 
 /*

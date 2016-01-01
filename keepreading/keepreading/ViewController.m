@@ -33,6 +33,7 @@
 @property (nonatomic) NSArray* books;
 @property (nonatomic) NSArray* menuTitles;
 @property (nonatomic) NSArray* menuTitleImages;
+@property (nonatomic) BooksSearchTableViewController* bookSearchViewController;
 @property (nonatomic) UIViewController* currentShowViewController;
 
 @end
@@ -61,8 +62,12 @@
     [self menuViewSetup];
     [self localBooksTableViewSetup];
     [self animationBehaiorSetup];
-    
-    self.books = [[BookCore sharedInstance] listBooks];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self reloadData];
 }
 
 - (void)navigationBarSetup
@@ -238,29 +243,41 @@
     }
 }
 
+- (void)reloadData
+{
+    self.books = [[BookCore sharedInstance] listBooks];
+    [self.localBooksTableView reloadData];
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.homeTableView) {
         if (self.atTop == YES) {
             return ;
         }
-        if (self.currentShowViewController.view) {
-            [self.currentShowViewController.view removeFromSuperview];
-        }
+        
+        self.currentShowViewController.view.hidden = YES;
+        
         NSString* menuTitle = [self.menuTitles objectAtIndex:indexPath.row];
-        if ([menuTitle isEqualToString:@"搜索"]) {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            BooksSearchTableViewController* controller = (BooksSearchTableViewController *)
-            [storyboard instantiateViewControllerWithIdentifier:@"BooksSearchTableViewController"];
-            [controller setPresentVC:self];
-            self.currentShowViewController = controller;
-            [self.view insertSubview:self.currentShowViewController.view belowSubview:self.menuView];
-            [self.currentShowViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.view.mas_top).with.offset([self navigationBarHeight]); //with is an optional semantic filler
-                make.left.equalTo(self.view.mas_left).with.offset(0);
-                make.bottom.equalTo(self.view.mas_bottom).with.offset(0);
-                make.right.equalTo(self.view.mas_right).with.offset(0);
-            }];
+        if ([menuTitle isEqualToString:@"正在阅读"]) {
+            [self reloadData];
+        } else if ([menuTitle isEqualToString:@"搜索"]) {
+            if (self.bookSearchViewController == nil) {
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                self.bookSearchViewController = (BooksSearchTableViewController *)
+                [storyboard instantiateViewControllerWithIdentifier:@"BooksSearchTableViewController"];
+                [self.bookSearchViewController setPresentVC:self];
+                [self.view insertSubview:self.bookSearchViewController.view belowSubview:self.menuView];
+                [self.bookSearchViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(self.view.mas_top).with.offset([self navigationBarHeight]); //with is an optional semantic filler
+                    make.left.equalTo(self.view.mas_left).with.offset(0);
+                    make.bottom.equalTo(self.view.mas_bottom).with.offset(0);
+                    make.right.equalTo(self.view.mas_right).with.offset(0);
+                }];
+            } else {
+                self.bookSearchViewController.view.hidden = NO;
+            }
+            self.currentShowViewController = self.bookSearchViewController;
         }
         [self pushUpMenu];
     } else if (tableView == self.localBooksTableView) {
