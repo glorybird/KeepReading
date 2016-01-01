@@ -23,6 +23,7 @@ PODS:
   - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
   - JTSImageViewController (1.5.1)
+  - Masonry (0.6.4)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -34,6 +35,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - JTSImageViewController (~> 1.0)
+  - Masonry (~> 0.0)
   - SDWebImage (~> 3.0)
   - YapDatabase (~> 2.0)
 
@@ -41,6 +43,7 @@ SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   JTSImageViewController: 1f8ce1cc93dab0d0af8e53badeea7528560cfec9
+  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   YapDatabase: a7a1ae3e0f89c319e3b22615c2351987fbbdbded
 

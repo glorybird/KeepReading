@@ -12,6 +12,8 @@
 #import "BookTableViewCell.h"
 #import "BookTableView.h"
 #import "UIImageView+WebCache.h"
+#import <Masonry.h>
+#import "BooksSearchTableViewController.h"
 
 static NSString *cellIdentifier = @"BookTableViewCellIdentifier";
 
@@ -19,7 +21,8 @@ static NSString *cellIdentifier = @"BookTableViewCellIdentifier";
 
 @property (nonatomic) UIView* menuView;
 @property (nonatomic) UIButton* menuButton;
-@property (nonatomic, weak) IBOutlet BookTableView* tableView;
+@property (nonatomic, weak) IBOutlet BookTableView* localBooksTableView;
+@property (nonatomic) UITableView* homeTableView;
 @property (nonatomic) UIDynamicAnimator* animator;
 @property (nonatomic) UIGravityBehavior* gravityBehaior;
 @property (nonatomic) UICollisionBehavior *collision;
@@ -29,6 +32,9 @@ static NSString *cellIdentifier = @"BookTableViewCellIdentifier";
 @property (nonatomic) UIDynamicItemBehavior *itemBehaviour;
 @property (nonatomic, assign) BOOL atTop;
 @property (nonatomic) NSArray* books;
+@property (nonatomic) NSArray* menuTitles;
+@property (nonatomic) NSArray* menuTitleImages;
+@property (nonatomic) UIViewController* currentShowViewController;
 
 @end
 
@@ -54,7 +60,7 @@ static NSString *cellIdentifier = @"BookTableViewCellIdentifier";
     
     [self navigationBarSetup];
     [self menuViewSetup];
-    [self tableViewSetup];
+    [self localBooksTableViewSetup];
     [self animationBehaiorSetup];
     
     [RVTask mountaintop].thenFinishSetYourself(^(RVTask *preTask, void (^finishBlock)(id result)) {
@@ -65,7 +71,7 @@ static NSString *cellIdentifier = @"BookTableViewCellIdentifier";
         self.books = preTask.result;
         return nil;
     }).then(^id(RVTask *preTask) {
-        [self.tableView reloadData];
+        [self.localBooksTableView reloadData];
         return nil;
     });
 }
@@ -85,18 +91,36 @@ static NSString *cellIdentifier = @"BookTableViewCellIdentifier";
     self.menuView.alpha = 0.0;
     [self.view addSubview:self.menuView];
     
+    // Home page table
+    self.homeTableView = [[UITableView alloc] init];
+    [self.homeTableView setBackgroundColor:[UIColor clearColor]];
+    [self.homeTableView setSeparatorColor:[UIColor clearColor]];
+    [self.menuView addSubview:self.homeTableView];
+    UIEdgeInsets padding = UIEdgeInsetsMake(170, 70, 10, 70);
+    [self.homeTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.homeTableView.superview.mas_top).with.offset(padding.top); //with is an optional semantic filler
+        make.left.equalTo(self.homeTableView.superview.mas_left).with.offset(padding.left);
+        make.width.equalTo(@180);
+        make.bottom.equalTo(self.homeTableView.superview.mas_bottom).with.offset(-padding.bottom);
+    }];
+    [self.homeTableView setDataSource:self];
+    [self.homeTableView setDelegate:self];
+    
     self.menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
     self.menuButton.enabled = NO;
     [self.menuButton addTarget:self action:@selector(switchMenuState) forControlEvents:UIControlEventTouchUpInside];
     [self.menuButton setImage:[UIImage imageNamed:@"menuButton"] forState:UIControlStateNormal];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.menuButton];
     self.atTop = YES;
+    
+    self.menuTitles = @[@"正在阅读", @"搜索"];
+    self.menuTitleImages = nil;
 }
 
-- (void)tableViewSetup
+- (void)localBooksTableViewSetup
 {
-    self.tableView.backgroundColor = [UIColor clearColor];
-    [self.view sendSubviewToBack:self.tableView];
+    self.localBooksTableView.backgroundColor = [UIColor clearColor];
+    [self.view sendSubviewToBack:self.localBooksTableView];
 }
 
 - (void)animationBehaiorSetup
@@ -143,10 +167,8 @@ static NSString *cellIdentifier = @"BookTableViewCellIdentifier";
 -(void)switchMenuState{
     if (self.atTop) {
         [self dropDownMenu];
-        self.atTop = NO;
     } else {
         [self pushUpMenu];
-        self.atTop = YES;
     }
 }
 
@@ -156,6 +178,7 @@ static NSString *cellIdentifier = @"BookTableViewCellIdentifier";
     [self.animator addBehavior:self.itemBehaviour];
     [self.animator addBehavior:self.gravityBehaior];
     [self.animator addBehavior:self.pushDownBehavior];
+    self.atTop = NO;
 }
 
 - (void)pushUpMenu
@@ -164,6 +187,7 @@ static NSString *cellIdentifier = @"BookTableViewCellIdentifier";
     [self.animator removeBehavior:self.gravityBehaior];
     [self.animator removeBehavior:self.pushDownBehavior];
     [self.animator addBehavior:self.pushInitBehavior];
+    self.atTop = YES;
 }
 
 - (void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item
@@ -187,26 +211,79 @@ static NSString *cellIdentifier = @"BookTableViewCellIdentifier";
 // UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.books.count;
+    if (tableView == self.localBooksTableView) {
+        return self.books.count;
+    } else if (tableView == self.homeTableView) {
+        return 2;
+    } else {
+        return 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Book* book = [self.books objectAtIndex:indexPath.row];
-    BookTableViewCell* cell = (BookTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    cell.book = book;
-    cell.presentVC = self;
-    [cell.surface sd_setImageWithURL:[NSURL URLWithString:book.imageUrl]];;
-    cell.title.text = book.title;
-    cell.average.text = [NSString stringWithFormat:@"评分:%@", book.average];
-    cell.author.text = [NSString stringWithFormat:@"作者:%@", book.authors.firstObject];
-    cell.pages.text = [NSString stringWithFormat:@"页数:%@", book.pages];
-    return cell;
+    if (tableView == self.homeTableView) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"homeCell"];
+        if(cell == nil){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"homeCell"];
+        }
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [cell setBackgroundColor:[UIColor clearColor]];
+        [cell.textLabel setTextColor:[UIColor whiteColor]];
+        cell.textLabel.text = [self.menuTitles objectAtIndex:indexPath.row];
+        return cell;
+    } else if (tableView == self.localBooksTableView) {
+        Book* book = [self.books objectAtIndex:indexPath.row];
+        BookTableViewCell* cell = (BookTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        cell.book = book;
+        cell.presentVC = self;
+        [cell.surface sd_setImageWithURL:[NSURL URLWithString:book.imageUrl]];;
+        cell.title.text = book.title;
+        cell.average.text = [NSString stringWithFormat:@"评分:%@", book.average];
+        cell.author.text = [NSString stringWithFormat:@"作者:%@", book.authors.firstObject];
+        cell.pages.text = [NSString stringWithFormat:@"页数:%@", book.pages];
+        return cell;
+    } else {
+        return nil;
+    }
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == self.homeTableView) {
+        if (self.atTop == YES) {
+            return ;
+        }
+        if (self.currentShowViewController.view) {
+            [self.currentShowViewController.view removeFromSuperview];
+        }
+        NSString* menuTitle = [self.menuTitles objectAtIndex:indexPath.row];
+        if ([menuTitle isEqualToString:@"搜索"]) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            self.currentShowViewController = (BooksSearchTableViewController *)
+            [storyboard instantiateViewControllerWithIdentifier:@"BooksSearchTableViewController"];
+            [self.view insertSubview:self.currentShowViewController.view belowSubview:self.menuView];
+            [self.currentShowViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.view.mas_top).with.offset([self navigationBarHeight]); //with is an optional semantic filler
+                make.left.equalTo(self.view.mas_left).with.offset(0);
+                make.bottom.equalTo(self.view.mas_bottom).with.offset(0);
+                make.right.equalTo(self.view.mas_right).with.offset(0);
+            }];
+        }
+        [self pushUpMenu];
+    }
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 170;
+    if (tableView == self.localBooksTableView) {
+        return 170.0f;
+    } else if (tableView == self.homeTableView) {
+        return 55.0f;
+    } else {
+        return 0;
+    }
 }
 
 @end

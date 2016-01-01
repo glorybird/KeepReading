@@ -21,6 +21,7 @@
 		0B733B1A1C2EA4120024DB8F /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B733B191C2EA4120024DB8F /* BaseModel.m */; };
 		0B733B301C2EF2550024DB8F /* libRiver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B733B2B1C2EF23D0024DB8F /* libRiver.a */; };
 		C5A7512DADB0892256BBE509 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 372477C91097149E9E7D2E5C /* libPods.a */; };
+		E31915171C368062005C6F72 /* BooksSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E31915161C368062005C6F72 /* BooksSearchTableViewController.m */; };
 		E36BCDF21C318A140057EC7F /* BookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E36BCDF11C318A140057EC7F /* BookTableViewCell.m */; };
 		E36BCDFE1C31949A0057EC7F /* BookTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E36BCDFD1C31949A0057EC7F /* BookTableView.m */; };
 /* End PBXBuildFile section */
@@ -92,6 +93,8 @@
 		372477C91097149E9E7D2E5C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE1539197C2D6D2AA15644E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A7595A16357207B2EA193279 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E31915151C368062005C6F72 /* BooksSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksSearchTableViewController.h; sourceTree = "<group>"; };
+		E31915161C368062005C6F72 /* BooksSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksSearchTableViewController.m; sourceTree = "<group>"; };
 		E36BCDF01C318A140057EC7F /* BookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookTableViewCell.h; sourceTree = "<group>"; };
 		E36BCDF11C318A140057EC7F /* BookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookTableViewCell.m; sourceTree = "<group>"; };
 		E36BCDFC1C31949A0057EC7F /* BookTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookTableView.h; sourceTree = "<group>"; };
@@ -160,6 +163,8 @@
 				E36BCDF11C318A140057EC7F /* BookTableViewCell.m */,
 				E36BCDFC1C31949A0057EC7F /* BookTableView.h */,
 				E36BCDFD1C31949A0057EC7F /* BookTableView.m */,
+				E31915151C368062005C6F72 /* BooksSearchTableViewController.h */,
+				E31915161C368062005C6F72 /* BooksSearchTableViewController.m */,
 				0B53AF161C2E5FB7009DF1C3 /* Main.storyboard */,
 				0B53AF191C2E5FB7009DF1C3 /* Assets.xcassets */,
 				0B53AF1B1C2E5FB7009DF1C3 /* LaunchScreen.storyboard */,
@@ -457,6 +462,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E31915171C368062005C6F72 /* BooksSearchTableViewController.m in Sources */,
 				0B733B141C2E92A80024DB8F /* DataParseHelper.m in Sources */,
 				0B53AF431C2E7FDE009DF1C3 /* BookCore.m in Sources */,
 				0B53AF151C2E5FB7009DF1C3 /* ViewController.m in Sources */,
