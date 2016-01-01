@@ -15,8 +15,6 @@
 #import <Masonry.h>
 #import "BooksSearchTableViewController.h"
 
-static NSString *cellIdentifier = @"BookTableViewCellIdentifier";
-
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate, UIDynamicAnimatorDelegate, UICollisionBehaviorDelegate>
 
 @property (nonatomic) UIView* menuView;
@@ -63,17 +61,7 @@ static NSString *cellIdentifier = @"BookTableViewCellIdentifier";
     [self localBooksTableViewSetup];
     [self animationBehaiorSetup];
     
-    [RVTask mountaintop].thenFinishSetYourself(^(RVTask *preTask, void (^finishBlock)(id result)) {
-        [[BookCore sharedInstance] searchBooksWithName:@"面包" completeHandler:^(NSArray *books, NSError *error) {
-            finishBlock(books);
-        }];
-    }).then(^id(RVTask *preTask) {
-        self.books = preTask.result;
-        return nil;
-    }).then(^id(RVTask *preTask) {
-        [self.localBooksTableView reloadData];
-        return nil;
-    });
+    self.books = [[BookCore sharedInstance] listBooks];
 }
 
 - (void)navigationBarSetup
@@ -233,6 +221,7 @@ static NSString *cellIdentifier = @"BookTableViewCellIdentifier";
         cell.textLabel.text = [self.menuTitles objectAtIndex:indexPath.row];
         return cell;
     } else if (tableView == self.localBooksTableView) {
+        static NSString *cellIdentifier = @"BookTableViewCellIdentifier";
         Book* book = [self.books objectAtIndex:indexPath.row];
         BookTableViewCell* cell = (BookTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         cell.book = book;

@@ -43,7 +43,7 @@
 
 - (void)searchBooksWithName:(NSString *)name completeHandler:(void(^)(NSArray* books, NSError* error))handler
 {
-    [[AFHTTPSessionManager manager] GET:@"https://api.douban.com/v2/book/search" parameters:@{@"tag":name} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[AFHTTPSessionManager manager] GET:@"https://api.douban.com/v2/book/search" parameters:@{@"q":name} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (handler) {
             handler([DataParseHelper parseToBooksWithDictionary:responseObject], nil);
         }

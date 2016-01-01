@@ -127,7 +127,7 @@
         <scene sceneID="rQE-DG-34g">
             <objects>
                 <tableViewController storyboardIdentifier="BooksSearchTableViewController" id="3oI-Mm-tMd" customClass="BooksSearchTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Bh-mF-kSr">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="197" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Bh-mF-kSr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -138,13 +138,82 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="eHh-3t-kds">
-                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BookTableViewCellIdentifier" rowHeight="197" id="PJM-nw-MMu" customClass="BookTableViewCell">
+                                <rect key="frame" x="0.0" y="72" width="600" height="197"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eHh-3t-kds" id="9bm-Fe-P2R">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PJM-nw-MMu" id="jWr-YU-Jpn">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="197"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DL2-VG-HIF">
+                                            <rect key="frame" x="10" y="10" width="100" height="150"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="150" id="5e7-Qw-u0W"/>
+                                                <constraint firstAttribute="width" constant="100" id="rtQ-mO-lMj"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="图书标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xe-q5-MJD">
+                                            <rect key="frame" x="118" y="0.0" width="474" height="46"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="46" id="RCw-QL-Yun"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作者" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qf4-8Y-Nas">
+                                            <rect key="frame" x="118" y="89" width="474" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="vHI-5y-xjv"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mjv-Gb-XhH">
+                                            <rect key="frame" x="118" y="54" width="474" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="okJ-e7-pvj"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="页数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oBI-8z-d8v">
+                                            <rect key="frame" x="118" y="124" width="474" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="3wc-9e-SAZ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Mjv-Gb-XhH" firstAttribute="leading" secondItem="DL2-VG-HIF" secondAttribute="trailing" constant="8" id="0e0-m6-lvZ"/>
+                                        <constraint firstItem="Mjv-Gb-XhH" firstAttribute="top" secondItem="3xe-q5-MJD" secondAttribute="bottom" constant="8" id="3BR-5U-aDx"/>
+                                        <constraint firstItem="3xe-q5-MJD" firstAttribute="leading" secondItem="DL2-VG-HIF" secondAttribute="trailing" constant="8" id="3ea-dm-0XA"/>
+                                        <constraint firstItem="oBI-8z-d8v" firstAttribute="top" secondItem="Qf4-8Y-Nas" secondAttribute="bottom" constant="14" id="Nh7-BH-5bt"/>
+                                        <constraint firstItem="Qf4-8Y-Nas" firstAttribute="leading" secondItem="DL2-VG-HIF" secondAttribute="trailing" constant="8" id="UYg-17-oFa"/>
+                                        <constraint firstItem="DL2-VG-HIF" firstAttribute="leading" secondItem="jWr-YU-Jpn" secondAttribute="leadingMargin" constant="2" id="aIm-iz-fPy"/>
+                                        <constraint firstAttribute="trailing" secondItem="Mjv-Gb-XhH" secondAttribute="trailing" constant="8" id="bdt-nr-lPB"/>
+                                        <constraint firstAttribute="trailing" secondItem="oBI-8z-d8v" secondAttribute="trailing" constant="8" id="dt4-hn-stN"/>
+                                        <constraint firstAttribute="trailing" secondItem="3xe-q5-MJD" secondAttribute="trailing" constant="8" id="g1m-Bl-wYL"/>
+                                        <constraint firstItem="DL2-VG-HIF" firstAttribute="top" secondItem="jWr-YU-Jpn" secondAttribute="topMargin" constant="2" id="iss-N0-eRR"/>
+                                        <constraint firstItem="Qf4-8Y-Nas" firstAttribute="trailing" secondItem="jWr-YU-Jpn" secondAttribute="trailingMargin" id="jTL-kB-Qod"/>
+                                        <constraint firstItem="Qf4-8Y-Nas" firstAttribute="top" secondItem="Mjv-Gb-XhH" secondAttribute="bottom" constant="14" id="lDt-oX-GAo"/>
+                                        <constraint firstItem="oBI-8z-d8v" firstAttribute="leading" secondItem="DL2-VG-HIF" secondAttribute="trailing" constant="8" id="pag-YS-DMv"/>
+                                        <constraint firstItem="3xe-q5-MJD" firstAttribute="top" secondItem="jWr-YU-Jpn" secondAttribute="top" id="qQN-vs-VdI"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.25490196079999999" green="0.24313725489999999" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="author" destination="Qf4-8Y-Nas" id="e6R-nb-aXp"/>
+                                    <outlet property="average" destination="Mjv-Gb-XhH" id="tt5-F5-zMu"/>
+                                    <outlet property="pages" destination="oBI-8z-d8v" id="E2k-Yx-heg"/>
+                                    <outlet property="surface" destination="DL2-VG-HIF" id="iTi-qi-aVn"/>
+                                    <outlet property="title" destination="3xe-q5-MJD" id="y3Q-3j-6wV"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -152,6 +221,9 @@
                             <outlet property="delegate" destination="3oI-Mm-tMd" id="7Ow-of-HaP"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="searchBar" destination="kv3-Sw-fpn" id="u4h-LL-s6r"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b4W-s6-Het" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BooksSearchTableViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
