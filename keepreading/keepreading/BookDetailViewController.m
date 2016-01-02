@@ -36,9 +36,12 @@
         }
     } else {
         self.progressView.hidden = NO;
+        self.progressView.hintViewBackgroundColor = [UIColor clearColor];
+        self.progressView.startAngle = -90;
+        self.progressView.hintTextFont = [UIFont systemFontOfSize:13];
         self.progressView.progressBarWidth = 10.0f;
         self.progressView.progressBarProgressColor = [UIColor blackColor];
-        self.progressView.progressBarTrackColor = [UIColor whiteColor];
+        self.progressView.progressBarTrackColor = [UIColor clearColor];
         self.progressSlider.hidden = NO;
         self.progressSlider.minimumValue = 0.0f;
         self.progressSlider.maximumValue = [self.book.pages floatValue];
@@ -46,6 +49,13 @@
         UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteBook:)];
         [self.progressView setProgress:self.progressSlider.value/[self.book.pages floatValue] animated:NO];
         self.navigationItem.rightBarButtonItem = deleteButton;
+        [self.progressView setHintTextGenerationBlock:^NSString *(CGFloat progress) {
+            if (progress == 1) {
+                return @"已完成";
+            } else {
+                return [NSString stringWithFormat:@"%ld/%@", (NSInteger)self.progressSlider.value, self.book.pages];
+            }
+        }];
     }
 }
 
