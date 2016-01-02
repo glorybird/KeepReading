@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.0.4)
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
+  - CircleProgressBar (0.22)
   - CocoaLumberjack (2.2.0):
     - CocoaLumberjack/Default (= 2.2.0)
     - CocoaLumberjack/Extensions (= 2.2.0)
@@ -34,6 +35,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - CircleProgressBar (~> 0.3)
   - JTSImageViewController (~> 1.0)
   - Masonry (~> 0.0)
   - SDWebImage (~> 3.0)
@@ -41,6 +43,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
+  CircleProgressBar: bb6418f9a5121f64c5784b9a72e34f353727266c
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   JTSImageViewController: 1f8ce1cc93dab0d0af8e53badeea7528560cfec9
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2

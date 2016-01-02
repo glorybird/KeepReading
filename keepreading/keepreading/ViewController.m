@@ -15,6 +15,7 @@
 #import <Masonry.h>
 #import "BooksSearchTableViewController.h"
 #import "BookDetailViewController.h"
+#import "BookFinishedTableViewController.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate, UIDynamicAnimatorDelegate, UICollisionBehaviorDelegate>
 
@@ -34,6 +35,7 @@
 @property (nonatomic) NSArray* menuTitles;
 @property (nonatomic) NSArray* menuTitleImages;
 @property (nonatomic) BooksSearchTableViewController* bookSearchViewController;
+@property (nonatomic) BookFinishedTableViewController* bookFinishedViewController;
 @property (nonatomic) UIViewController* currentShowViewController;
 
 @end
@@ -107,7 +109,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.menuButton];
     self.atTop = YES;
     
-    self.menuTitles = @[@"正在阅读", @"搜索"];
+    self.menuTitles = @[@"正在阅读", @"已完成阅读", @"搜索"];
     self.menuTitleImages = nil;
 }
 
@@ -208,7 +210,7 @@
     if (tableView == self.localBooksTableView) {
         return self.books.count;
     } else if (tableView == self.homeTableView) {
-        return 2;
+        return self.menuTitles.count;
     } else {
         return 0;
     }
@@ -261,6 +263,23 @@
         NSString* menuTitle = [self.menuTitles objectAtIndex:indexPath.row];
         if ([menuTitle isEqualToString:@"正在阅读"]) {
             [self reloadData];
+        } else if ([menuTitle isEqualToString:@"已完成阅读"]) {
+            if (self.bookFinishedViewController == nil) {
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                self.bookFinishedViewController = (BookFinishedTableViewController *)
+                [storyboard instantiateViewControllerWithIdentifier:@"BookFinishedTableViewController"];
+                [self.view insertSubview:self.bookFinishedViewController.view belowSubview:self.menuView];
+                [self.bookFinishedViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(self.view.mas_top).with.offset([self navigationBarHeight]); //with is an optional semantic filler
+                    make.left.equalTo(self.view.mas_left).with.offset(0);
+                    make.bottom.equalTo(self.view.mas_bottom).with.offset(0);
+                    make.right.equalTo(self.view.mas_right).with.offset(0);
+                }];
+            } else {
+                self.bookFinishedViewController.view.hidden = NO;
+                [self.bookFinishedViewController reloadData];
+            }
+            self.currentShowViewController = self.bookFinishedViewController;
         } else if ([menuTitle isEqualToString:@"搜索"]) {
             if (self.bookSearchViewController == nil) {
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

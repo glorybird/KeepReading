@@ -28,14 +28,31 @@
     [self.summaryTextView setTextColor:[UIColor whiteColor]];
     if (self.isComeFromSearchList) {
         self.addLocalReadListButton.hidden = NO;
+        self.progressView.hidden = YES;
+        self.progressSlider.hidden = YES;
         if ([[BookCore sharedInstance] bookWithId:self.book.uid]) {
             [self.addLocalReadListButton setTitle:@"已加入阅读列表" forState:UIControlStateNormal];
             self.addLocalReadListButton.enabled = NO;
         }
     } else {
+        self.progressView.hidden = NO;
+        self.progressView.progressBarWidth = 10.0f;
+        self.progressView.progressBarProgressColor = [UIColor blackColor];
+        self.progressView.progressBarTrackColor = [UIColor whiteColor];
+        self.progressSlider.hidden = NO;
+        self.progressSlider.minimumValue = 0.0f;
+        self.progressSlider.maximumValue = [self.book.pages floatValue];
+        self.progressSlider.value = [[[BookCore sharedInstance] progessWithBookId:self.book.uid] floatValue];
         UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteBook:)];
+        [self.progressView setProgress:self.progressSlider.value/[self.book.pages floatValue] animated:NO];
         self.navigationItem.rightBarButtonItem = deleteButton;
     }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[BookCore sharedInstance] saveProgressWithBookId:self.book.uid progress:@(self.progressSlider.value)];
 }
 
 - (void)deleteBook:(id)sender
@@ -66,6 +83,13 @@
     [[BookCore sharedInstance] saveBook:self.book];
     [self.addLocalReadListButton setTitle:@"已加入阅读列表" forState:UIControlStateNormal];
     self.addLocalReadListButton.enabled = NO;
+}
+
+- (IBAction)progressValue:(id)sender {
+    [self.progressView setProgress:self.progressSlider.value/self.book.pages.floatValue animated:NO];
+    if (self.progressSlider.value/self.book.pages.floatValue == 1.0f) {
+        [[BookCore sharedInstance] saveProgressWithBookId:self.book.uid progress:@(self.progressSlider.value)];
+    }
 }
 
 /*

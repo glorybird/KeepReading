@@ -81,11 +81,24 @@
 {
     NSMutableArray* books = [NSMutableArray array];
     [[self.database newConnection] readWithBlock:^(YapDatabaseReadTransaction * _Nonnull transaction) {
-       [transaction enumerateKeysAndObjectsInAllCollectionsUsingBlock:^(NSString * _Nonnull collection, NSString * _Nonnull key, id  _Nonnull object, BOOL * _Nonnull stop) {
-           if ([collection isEqualToString:@"books"]) {
+       [transaction enumerateKeysAndObjectsInAllCollectionsUsingBlock:^(NSString * _Nonnull collection, NSString * _Nonnull key, Book*  _Nonnull object, BOOL * _Nonnull stop) {
+           if ([collection isEqualToString:@"books"] && [[transaction objectForKey:object.uid inCollection:@"progress"] integerValue] < object.pages.integerValue) {
                [books addObject:object];
            }
        }];
+    }];
+    return books;
+}
+
+- (NSArray *)listFinishReadBooks
+{
+    NSMutableArray* books = [NSMutableArray array];
+    [[self.database newConnection] readWithBlock:^(YapDatabaseReadTransaction * _Nonnull transaction) {
+        [transaction enumerateKeysAndObjectsInAllCollectionsUsingBlock:^(NSString * _Nonnull collection, NSString * _Nonnull key, Book*  _Nonnull object, BOOL * _Nonnull stop) {
+            if ([collection isEqualToString:@"books"] && [[transaction objectForKey:object.uid inCollection:@"progress"] integerValue] >= object.pages.integerValue) {
+                [books addObject:object];
+            }
+        }];
     }];
     return books;
 }

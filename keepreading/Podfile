@@ -5,3 +5,4 @@ pod 'YapDatabase', '~> 2.0'
 pod 'SDWebImage', '~> 3.0'
 pod 'JTSImageViewController', '~> 1.0'
 pod 'Masonry', '~> 0.0'
+pod 'CircleProgressBar', '~> 0.3’

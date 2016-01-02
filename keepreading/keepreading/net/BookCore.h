@@ -40,9 +40,14 @@
 - (Book *)bookWithId:(NSString *)bookId;
 
 /*!
- *  @brief 本地图书列表
+ *  @brief 本地图书列表, 不含已完成（进度百分之百）
  */
 - (NSArray *)listBooks;
+
+/*!
+ *  @brief 已完成（进度百分之百）本地图书列表
+ */
+- (NSArray *)listFinishReadBooks;
 
 /*!
  *  @brief 保存读书进度
