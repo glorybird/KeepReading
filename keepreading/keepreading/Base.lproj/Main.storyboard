@@ -309,9 +309,15 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rkf-nM-wpe" customClass="CircleProgressBar">
                                         <rect key="frame" x="0.0" y="499" width="600" height="67"/>
                                         <color key="backgroundColor" red="0.25490196079999999" green="0.24313725489999999" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="67" id="LDX-w7-WbU"/>
+                                        </constraints>
                                     </view>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="dzO-9J-Hb3">
                                         <rect key="frame" x="-2" y="570" width="604" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="rQ5-Xl-3mG"/>
+                                        </constraints>
                                         <connections>
                                             <action selector="progressValue:" destination="36g-EK-Tbs" eventType="valueChanged" id="Lna-Ue-EMV"/>
                                         </connections>
@@ -319,11 +325,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.25490196079999999" green="0.24313725489999999" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="dzO-9J-Hb3" firstAttribute="top" secondItem="Rkf-nM-wpe" secondAttribute="bottom" id="4A2-Gg-fSQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="dzO-9J-Hb3" secondAttribute="trailing" constant="8" id="89f-7G-CCP"/>
-                                    <constraint firstItem="dzO-9J-Hb3" firstAttribute="leading" secondItem="kKi-Xv-WmN" secondAttribute="leading" constant="8" id="9eC-XJ-hNq"/>
+                                    <constraint firstItem="dzO-9J-Hb3" firstAttribute="top" secondItem="Rkf-nM-wpe" secondAttribute="bottom" constant="4" id="8jz-Ou-v0i"/>
                                     <constraint firstAttribute="trailing" secondItem="27I-u6-Byx" secondAttribute="trailing" id="Bga-HD-ooG"/>
                                     <constraint firstItem="Rkf-nM-wpe" firstAttribute="top" secondItem="27I-u6-Byx" secondAttribute="bottom" id="L7C-ij-pm6"/>
+                                    <constraint firstItem="dzO-9J-Hb3" firstAttribute="leading" secondItem="kKi-Xv-WmN" secondAttribute="leading" constant="64" id="PJy-DT-WBC"/>
                                     <constraint firstAttribute="trailing" secondItem="d28-6X-ZCo" secondAttribute="trailing" id="SiS-XL-N7g"/>
                                     <constraint firstItem="27I-u6-Byx" firstAttribute="leading" secondItem="kKi-Xv-WmN" secondAttribute="leading" id="Smq-Hp-DOE"/>
                                     <constraint firstItem="bi6-Z0-01k" firstAttribute="leading" secondItem="kKi-Xv-WmN" secondAttribute="leading" id="TgU-bY-Phu"/>
@@ -332,6 +337,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Rkf-nM-wpe" secondAttribute="trailing" id="f1S-iB-HNp"/>
                                     <constraint firstItem="27I-u6-Byx" firstAttribute="top" secondItem="d28-6X-ZCo" secondAttribute="bottom" id="fTh-vF-orF"/>
                                     <constraint firstItem="bi6-Z0-01k" firstAttribute="top" secondItem="kKi-Xv-WmN" secondAttribute="top" id="lED-1B-u7x"/>
+                                    <constraint firstAttribute="trailing" secondItem="dzO-9J-Hb3" secondAttribute="trailing" constant="64" id="nQn-pF-ZdW"/>
                                     <constraint firstItem="Rkf-nM-wpe" firstAttribute="leading" secondItem="kKi-Xv-WmN" secondAttribute="leading" id="tVt-a0-Mey"/>
                                     <constraint firstAttribute="trailing" secondItem="bi6-Z0-01k" secondAttribute="trailing" id="uQ7-YI-oXu"/>
                                     <constraint firstItem="bi6-Z0-01k" firstAttribute="leading" secondItem="d28-6X-ZCo" secondAttribute="leading" id="xwh-4U-wbo"/>
@@ -368,7 +374,7 @@
         <scene sceneID="rQE-DG-34g">
             <objects>
                 <tableViewController storyboardIdentifier="BooksSearchTableViewController" id="3oI-Mm-tMd" customClass="BooksSearchTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="197" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Bh-mF-kSr">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="197" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Bh-mF-kSr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

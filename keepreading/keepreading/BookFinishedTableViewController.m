@@ -55,7 +55,7 @@
     cell.delgate = self;
     Book* book = [self.books objectAtIndex:indexPath.row];
     cell.book = book;
-    [cell.surface sd_setImageWithURL:[NSURL URLWithString:book.imageUrl]];;
+    [cell.surface sd_setImageWithURL:[NSURL URLWithString:book.imageUrl]];
     [cell.bookTitle setText:book.title];
     return cell;
 }

@@ -23,7 +23,9 @@
         [books enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj isKindOfClass:[NSDictionary class]]) {
                 Book* book = [[Book alloc] initWithDictionary:obj];
-                [result addObject:book];
+                if (book.pages.integerValue > 0) {
+                    [result addObject:book];
+                }
             }
         }];
     }

@@ -12,6 +12,8 @@
 
 @interface BookDetailViewController ()
 
+@property (nonatomic, assign) CGFloat preProgressValue;
+
 @end
 
 @implementation BookDetailViewController
@@ -46,6 +48,7 @@
         self.progressSlider.minimumValue = 0.0f;
         self.progressSlider.maximumValue = [self.book.pages floatValue];
         self.progressSlider.value = [[[BookCore sharedInstance] progessWithBookId:self.book.uid] floatValue];
+        self.preProgressValue = self.progressSlider.value;
         UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteBook:)];
         [self.progressView setProgress:self.progressSlider.value/[self.book.pages floatValue] animated:NO];
         self.navigationItem.rightBarButtonItem = deleteButton;
@@ -80,8 +83,8 @@
     [self.scrollview.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         height += obj.frame.size.height;
     }];
-    self.scrollview.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, height);
-    [self.view setNeedsLayout];
+    self.scrollview.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, MAX([UIScreen mainScreen].bounds.size.height, height));
+    [self.view layoutIfNeeded];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -95,10 +98,15 @@
     self.addLocalReadListButton.enabled = NO;
 }
 
-- (IBAction)progressValue:(id)sender {
-    [self.progressView setProgress:self.progressSlider.value/self.book.pages.floatValue animated:NO];
-    if (self.progressSlider.value/self.book.pages.floatValue == 1.0f) {
-        [[BookCore sharedInstance] saveProgressWithBookId:self.book.uid progress:@(self.progressSlider.value)];
+- (IBAction)progressValue:(UIControl*)sender {
+    if ([sender isTouchInside] && [sender isTracking]) {
+        self.preProgressValue = self.progressSlider.value;
+        [self.progressView setProgress:self.progressSlider.value/self.book.pages.floatValue animated:NO];
+        if (self.progressSlider.value/self.book.pages.floatValue == 1.0f) {
+            [[BookCore sharedInstance] saveProgressWithBookId:self.book.uid progress:@(self.progressSlider.value)];
+        }
+    } else {
+        self.progressSlider.value = self.preProgressValue;
     }
 }
 

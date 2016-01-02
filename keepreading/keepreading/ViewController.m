@@ -136,7 +136,7 @@
     // - Collision Behavior
     self.collision = [[UICollisionBehavior alloc] initWithItems:@[self.menuView]];
     self.collision.collisionDelegate = self;
-    [self.collision addBoundaryWithIdentifier:@"Collide left" fromPoint:CGPointMake(-2, [self screenHeight]/2) toPoint:CGPointMake(-2, [self screenHeight])];
+    [self.collision addBoundaryWithIdentifier:@"Collide left" fromPoint:CGPointMake(-1, [self screenHeight]/2) toPoint:CGPointMake(-1, [self screenHeight])];
     [self.collision addBoundaryWithIdentifier:@"Collide top" fromPoint:CGPointMake([self screenHeight]/2, - [self navigationBarHeight] - [self screenWith]) toPoint:CGPointMake([self screenHeight], [self navigationBarHeight] - [self screenWith])];
     [self.animator addBehavior:self.collision];
     
@@ -171,10 +171,13 @@
 - (void)dropDownMenu
 {
     [self.animator removeBehavior:self.pushInitBehavior];
-    [self.animator addBehavior:self.itemBehaviour];
+    //[self.animator addBehavior:self.itemBehaviour];
     [self.animator addBehavior:self.gravityBehaior];
     [self.animator addBehavior:self.pushDownBehavior];
     self.atTop = NO;
+    
+    // 隐藏键盘
+    [self.bookSearchViewController.searchBar resignFirstResponder];
 }
 
 - (void)pushUpMenu
@@ -259,7 +262,6 @@
         }
         
         self.currentShowViewController.view.hidden = YES;
-        
         NSString* menuTitle = [self.menuTitles objectAtIndex:indexPath.row];
         if ([menuTitle isEqualToString:@"正在阅读"]) {
             [self reloadData];
